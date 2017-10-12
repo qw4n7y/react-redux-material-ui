@@ -1,5 +1,5 @@
 require('typeface-roboto')
-// require('./styles/app.scss')
+require('./styles/app.scss')
 
 import { createStore } from './store'
 const preloadedState = {}
