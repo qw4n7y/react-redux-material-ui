@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Layout from './_layout.jsx'
 import Counter from './../containers/counter'
 import BitcoinExchangeRate from './../containers/bitcoinExchangeRate'
 
@@ -9,7 +8,7 @@ import { withStyles } from 'material-ui/styles'
 
 class IndexPage extends React.Component {
     render(){
-      return (<Layout>
+      return (<div>
                 <List>
                   <ListItem>
                     <Counter/>
@@ -18,10 +17,7 @@ class IndexPage extends React.Component {
                     <BitcoinExchangeRate/>
                   </ListItem>
                 </List>
-                <Paper style={{margin: "1em 0"}}>1</Paper>
-                <Paper>2</Paper>
-                <Paper>3</Paper>
-              </Layout>)
+              </div>)
     }
 }
 

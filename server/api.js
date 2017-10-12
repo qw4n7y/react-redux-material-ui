@@ -9,11 +9,13 @@ const config = require('config')
 var blockchain = require('blockchain.info')
 var exchange = require('blockchain.info/exchange')
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+const FRONTEND_DIR = require('path').resolve(__dirname, './../docs')
 
-app.use(express.static(require('path').resolve(__dirname, './../public')))
+app.use(express.static(FRONTEND_DIR))
+
+app.get('*', function (req, res) {
+  res.sendFile(require('path').resolve(FRONTEND_DIR, 'index.html'))
+})
 
 io.on('connection', (socket) => {
   socket.emit('news', { hello: 'world' });

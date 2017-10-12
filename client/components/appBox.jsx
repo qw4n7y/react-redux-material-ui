@@ -4,6 +4,8 @@ import classNames from 'classnames';
 
 import { withStyles } from 'material-ui/styles';
 
+import * as ReactRouterDom from 'react-router-dom'
+
 import {Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton, MenuItem} from 'material-ui'
 import {Menu as MenuIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, AccountBalance as AccountBalanceIcon,
         AirlineSeatLegroomExtra as AirlineSeatLegroomExtraIcon, AirlineSeatLegroomReduced as AirlineSeatLegroomReducedIcon} from 'material-ui-icons'
@@ -160,14 +162,18 @@ class MiniDrawer extends React.Component {
               </div>
               <Divider />
               <List className={classes.list}>
-                <MenuItem>
-                  <AccountBalanceIcon className={classes.menuItemIcon} component="h3"/>
-                  MenuItem 1
-                </MenuItem>
-                <MenuItem>
-                  <AccountBalanceIcon className={classes.menuItemIcon} component="h3"/>
-                  MenuItem 2
-                </MenuItem>
+                <ReactRouterDom.Link to="/index">
+                  <MenuItem>
+                    <AccountBalanceIcon className={classes.menuItemIcon} component="h3"/>
+                    Index
+                  </MenuItem>
+                </ReactRouterDom.Link>
+                <ReactRouterDom.Link to="/test">
+                  <MenuItem>
+                    <AccountBalanceIcon className={classes.menuItemIcon} component="h3"/>
+                    Test
+                  </MenuItem>
+                </ReactRouterDom.Link>
               </List>
             </div>
           </Drawer>

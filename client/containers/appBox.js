@@ -1,4 +1,5 @@
 import * as ReactRedux from 'react-redux'
+import * as ReactRouterDom from 'react-router-dom'
 
 import AppBox from './../components/appBox.jsx'
 import Actions from './../actions/index'
@@ -19,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-module.exports = ReactRedux.connect(
+module.exports = ReactRouterDom.withRouter(ReactRedux.connect(
   mapStateToProps,
   mapDispatchToProps
-)(AppBox)
+)(AppBox))
