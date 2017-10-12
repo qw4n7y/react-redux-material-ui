@@ -1,14 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React from 'react'
+import ReactDom from 'react-dom'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles'
 
 import * as ReactRouterDom from 'react-router-dom'
 
-import {Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton, MenuItem} from 'material-ui'
+import {Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton, MenuItem, Button} from 'material-ui'
 import {Menu as MenuIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, AccountBalance as AccountBalanceIcon,
         AirlineSeatLegroomExtra as AirlineSeatLegroomExtraIcon, AirlineSeatLegroomReduced as AirlineSeatLegroomReducedIcon} from 'material-ui-icons'
+
+import UserPopover from './../containers/auth/userPopover'
 
 const drawerWidth = 240;
 
@@ -91,6 +94,15 @@ const styles = theme => ({
   menuItemIcon: {
     marginLeft: '0.2em',
     marginRight: '1em'
+  },
+  link: {
+    textDecoration: 'none',
+    '&.active': {
+      fontWeight: 'bold'
+    }
+  },
+  toolbar: {
+    justifyContent: 'space-between'
   }
 });
 
@@ -99,7 +111,8 @@ class MiniDrawer extends React.Component {
     super(props)
 
     this.state = {
-      open: this.props.open || this.props.pinOpen
+      open: this.props.open || this.props.pinOpen,
+      userPopoverOpen: false
     }
 
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this)
@@ -123,6 +136,19 @@ class MiniDrawer extends React.Component {
     this.props.togglePinOpen()
   }
 
+  handleUserPopoverOpen() {
+    this.setState({
+      userPopoverOpen: true,
+      userPopoverAnchorElement: ReactDom.findDOMNode(this.userPopoverAnchorElement)
+    })
+  }
+
+  handleUserPopoverClose() {
+    this.setState({
+      userPopoverOpen: false
+    })
+  }
+
   render() {
     const { classes, theme } = this.props;
 
@@ -130,7 +156,7 @@ class MiniDrawer extends React.Component {
       <div className={classes.root}>
         <div className={classes.appFrame}>
           <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
-            <Toolbar disableGutters={!this.state.open}>
+            <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
               <IconButton
                 color="contrast"
                 aria-label="open drawer"
@@ -142,6 +168,13 @@ class MiniDrawer extends React.Component {
               <Typography type="title" color="inherit" noWrap>
                 Rule the world
               </Typography>
+              <IconButton color="contrast" ref={(node) => { this.userPopoverAnchorElement = node }}
+                          onClick={this.handleUserPopoverOpen.bind(this)}>
+                <MenuIcon />
+              </IconButton>
+              <UserPopover open={this.state.userPopoverOpen}
+                           onClose={this.handleUserPopoverClose.bind(this)}
+                           anchorElement={this.state.userPopoverAnchorElement}/>
             </Toolbar>
           </AppBar>
           <Drawer
@@ -162,18 +195,18 @@ class MiniDrawer extends React.Component {
               </div>
               <Divider />
               <List className={classes.list}>
-                <ReactRouterDom.Link to="/index">
+                <ReactRouterDom.NavLink to="/" className={classes.link}>
                   <MenuItem>
                     <AccountBalanceIcon className={classes.menuItemIcon} component="h3"/>
                     Index
                   </MenuItem>
-                </ReactRouterDom.Link>
-                <ReactRouterDom.Link to="/test">
+                </ReactRouterDom.NavLink>
+                <ReactRouterDom.NavLink to="/test" className={classes.link}>
                   <MenuItem>
                     <AccountBalanceIcon className={classes.menuItemIcon} component="h3"/>
                     Test
                   </MenuItem>
-                </ReactRouterDom.Link>
+                </ReactRouterDom.NavLink>
               </List>
             </div>
           </Drawer>

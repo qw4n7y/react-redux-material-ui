@@ -10,6 +10,9 @@ const defaultState = {
   },
   ui: {
     sideBarPinOpen: Cookies.get('sideBarPinOpen') == 'true'
+  },
+  auth: {
+    currentUser: undefined // { name: 'Yury' }
   }
 }
 
