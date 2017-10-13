@@ -1,0 +1,18 @@
+version: '2'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.app
+    command: 'npm run server'
+    ports:
+      - '9000:9000'
+    volumes:
+      - .:/root/app
+  webpack:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.app
+    command: 'npm run webpack'
+    volumes:
+      - .:/root/app
