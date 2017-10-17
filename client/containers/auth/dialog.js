@@ -10,8 +10,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  authenticate: () => {
-    dispatch(Actions.auth.authenticate())
+  authenticate: (provider) => {
+    dispatch(Actions.auth.authenticate(provider))
   },
   authenticateTest: () => {
     dispatch(Actions.auth.authenticateTest())

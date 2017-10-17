@@ -50,7 +50,7 @@ class UserPopover extends React.Component {
                   <Button dense color="primary" className={this.props.classes.button}>
                     Profile
                   </Button>
-                  <Button dense color="primary" className={this.props.classes.button} onClick={this.props.signout}>
+                  <Button dense color="primary" className={this.props.classes.button} onClick={this.props.logout}>
                     Logout
                   </Button>
                 </CardElements.CardActions>
@@ -64,7 +64,7 @@ UserPopover.propTypes = {
   anchorElement: PropTypes.object,
   onClose: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  signout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(UserPopover)

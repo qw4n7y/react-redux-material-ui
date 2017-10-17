@@ -1,10 +1,10 @@
-const authenticate = () => {
+import * as ReactRouterRedux from 'react-router-redux'
+
+const authenticate = (provider) => {
+  const url = `/auth/${provider}`
   return (dispatch, getState) => {
-    setTimeout(() => {
-      dispatch(authenticateSuccessCallback({
-        name: 'Yury'
-      }))
-    }, 1000)
+    // dispatch(ReactRouterRedux.replace(url))
+    window.location = url
   }
 }
 
@@ -23,12 +23,16 @@ const authenticateSuccessCallback = (user) => ({
   user: user
 })
 
-const signout = () => ({
-  type: 'AUTH_SIGNOUT'
-})
+const logout = () => {
+  const url = `/logout`
+  return (dispatch, getState) => {
+    // dispatch(ReactRouterRedux.replace(url))
+    window.location = url
+  }
+}
 
 export default {
   authenticateTest,
   authenticate,
-  signout
+  logout
 }

@@ -7,6 +7,9 @@ services:
     command: 'npm run server'
     ports:
       - '9000:9000'
+      - '9229:9229'
+    links:
+      - mongo
     volumes:
       - .:/root/app
   webpack:
@@ -16,3 +19,9 @@ services:
     command: 'npm run webpack'
     volumes:
       - .:/root/app
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./vault/mongo:/data/db

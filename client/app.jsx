@@ -51,7 +51,7 @@ class App extends React.Component {
   }
 
   render () {
-    const routes = (this.state.currentUser !== undefined) ? (
+    const routes = (!!this.state.currentUser) ? (
                       <Layout>
                         {this.userRoutes()}
                       </Layout>

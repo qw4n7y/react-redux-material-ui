@@ -3,3 +3,4 @@ docs/*
 .git/*
 docker/*
 .DS_Store
+vault/*

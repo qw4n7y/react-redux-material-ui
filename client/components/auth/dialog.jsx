@@ -42,10 +42,7 @@ class AuthDialog extends React.Component {
                 <DialogElements.DialogContentText className={this.props.classes.heading}>
                   Please authenticate via
                 </DialogElements.DialogContentText>
-                <Button onClick={this.props.authenticate} color="primary" className={this.props.classes.button}>
-                  Google
-                </Button>
-                <Button onClick={this.props.authenticate} color="primary" className={this.props.classes.button}>
+                <Button onClick={() => this.props.authenticate('facebook')} color="primary" className={this.props.classes.button}>
                   Facebook
                 </Button>
                 <Button onClick={this.props.authenticateTest} color="primary" className={this.props.classes.button}>
